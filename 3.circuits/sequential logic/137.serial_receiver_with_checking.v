@@ -79,7 +79,7 @@ module top_module(
     end
 
     //Only the IDLE-state and STOP-state are likely to enter the RECEIVE-state, 
-    //so we need to set the bits to avoid the previous result's affection.
+    //so we need to reset the bits to avoid the previous result's affection.
     always @(posedge clk) begin
 		case(next)
 			IDLE : odd_reset <= 1;	
