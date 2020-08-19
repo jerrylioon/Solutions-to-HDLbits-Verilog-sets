@@ -78,8 +78,8 @@ module top_module(
     	else odd_reg <= odd; 
     end
 
-    //Only the IDLE and STOP modules are likely to enter the RECEIVE phase, 
-    //so we need to set the bits to prevent the previous result's affection.
+    //Only the IDLE-state and STOP-state are likely to enter the RECEIVE-state, 
+    //so we need to set the bits to avoid the previous result's affection.
     always @(posedge clk) begin
 		case(next)
 			IDLE : odd_reset <= 1;	
