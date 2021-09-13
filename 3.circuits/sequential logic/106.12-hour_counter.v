@@ -29,9 +29,9 @@ module top_module(
             pm <= 0;
         end
         else begin
-            if(ena_hms[2] && (mm == 8'h59) && (ss == 8'h59)) begin    //if mm=59 and ss=59
-                if(hh == 8'h12)  hh <= 8'h1; //hh changes:12AM->1AM or 12PM->1PM  
-            	else if(hh == 8'h11) begin  //if hh=11, PM->AM or AM->PM
+            if(ena_hms[2]) begin    //if mm=59 and ss=59
+                if(hh == 8'h12)  hh <= 8'h1; //hh will change:12AM->1AM or 12PM->1PM  
+                else if(hh == 8'h11) begin  //if hh=11, then PM->AM or AM->PM
             		hh[3:0] <= hh[3:0] + 1'h1; //hh=12
                		pm <= ~pm;
                 end 
