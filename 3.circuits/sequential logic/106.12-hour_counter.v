@@ -31,18 +31,17 @@ module top_module(
         else begin
             if(ena_hms[2]) begin    //if mm=59 and ss=59
                 if(hh == 8'h12)  hh <= 8'h1; //hh will change:12AM->1AM or 12PM->1PM  
-                else 
-                    if(hh == 8'h11) begin  //if hh=11, then PM->AM or AM->PM
+                else if(hh == 8'h11) begin  //if hh=11, then PM->AM or AM->PM
             		hh[3:0] <= hh[3:0] + 1'h1; //hh=12
                		pm <= ~pm;
-                	end 
-                    else begin
-                        if(hh[3:0] == 4'h9) begin
-                            hh[3:0] <= 4'h0;
-                            hh[7:4] <= hh[7:4] + 1'h1;
-                        end
-                        else hh[3:0] = hh[3:0] + 1'h1;
+                end 
+                else begin
+                    if(hh[3:0] == 4'h9) begin
+                        hh[3:0] <= 4'h0;
+                        hh[7:4] <= hh[7:4] + 1'h1;
                     end
+                    else hh[3:0] = hh[3:0] + 1'h1;
+                end
             end
             else hh <= hh;
         end
